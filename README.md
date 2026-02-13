@@ -22,8 +22,8 @@ A lightweight, performant CV/resume website that showcases professional experien
 
 ## Prerequisites
 
-- Elixir 1.14+
-- Erlang/OTP 25+
+- Elixir 1.12.2+ (tested up to 1.19.5)
+- Erlang/OTP 23+ (tested up to 28)
 - Node.js 18+ (for asset compilation)
 
 ## Setup

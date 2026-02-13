@@ -17,7 +17,7 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 config :esbuild,
-  version: "0.17.11",
+  version: "0.23.0",
   cv_app: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
@@ -26,7 +26,7 @@ config :esbuild,
   ]
 
 config :tailwind,
-  version: "3.4.0",
+  version: "3.4.17",
   cv_app: [
     args: ~w(
       --config=tailwind.config.js

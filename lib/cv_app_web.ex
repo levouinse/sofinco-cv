@@ -1,5 +1,7 @@
 defmodule CvAppWeb do
   def static_paths, do: ~w(assets fonts images favicon.ico robots.txt resume.pdf)
+  
+  def __sockets__, do: []
 
   def router do
     quote do

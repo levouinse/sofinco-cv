@@ -29,8 +29,8 @@ defmodule CvApp.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:plug, "~> 1.13.0"},
-      {:tailwind, "~> 0.1.10", runtime: Mix.env() == :dev},
-      {:esbuild, "~> 0.5.0", runtime: Mix.env() == :dev}
+      {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
+      {:esbuild, "~> 0.8", runtime: Mix.env() == :dev}
     ]
   end
 

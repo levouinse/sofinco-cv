@@ -11,7 +11,7 @@ if ! command -v elixir &> /dev/null; then
     exit 1
 fi
 
-echo "✅ Elixir found: $(elixir --version | head -n 1)"
+echo "✅ Elixir found: $(elixir --version 2>&1 | head -n 1)"
 
 # Check if Mix is available
 if ! command -v mix &> /dev/null; then
