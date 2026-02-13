@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: cv-andi
+    runtime: docker
+    plan: free
+    envVars:
+      - key: SECRET_KEY_BASE
+        generateValue: true
+      - key: PHX_HOST
+        value: cv-andi.onrender.com
+      - key: PORT
+        value: 10000
+      - key: MIX_ENV
+        value: prod

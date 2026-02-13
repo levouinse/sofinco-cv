@@ -1,21 +1,20 @@
 [package]
-name = "cv-app"
+name = "cv-andi"
 version = "0.1.0"
 description = "Online CV Website - ANDI FARREL AL-FAIZY"
 license = "MIT"
-repository = "https://github.com/yourusername/cv-app"
-
-[[module]]
-name = "cv-app"
-source = "_build/prod/rel/cv_app/bin/cv_app"
-abi = "wasi"
-
-[module.interfaces]
-wasi = "0.1.0"
-
-[[command]]
-name = "start"
-module = "cv-app"
-runner = "wasi"
 
 [dependencies]
+"sharrattj/elixir" = "^1.14"
+
+[[command]]
+name = "script"
+module = "sharrattj/elixir:elixir"
+runner = "https://webc.org/runner/wasi"
+
+[command.annotations.wasi]
+main-args = ["-S", "mix", "phx.server"]
+env = ["MIX_ENV=prod"]
+
+[fs]
+"/app" = "."

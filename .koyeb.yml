@@ -1,0 +1,22 @@
+app: cv-andi
+
+services:
+  web:
+    type: web
+    instance_type: nano
+    ports:
+      - port: 8080
+        protocol: http
+    env:
+      - name: MIX_ENV
+        value: prod
+      - name: PORT
+        value: "8080"
+    build:
+      type: docker
+      dockerfile: Dockerfile
+    regions:
+      - sin
+    scaling:
+      min: 1
+      max: 1

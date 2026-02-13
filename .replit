@@ -1,0 +1,21 @@
+run = "mix phx.server"
+entrypoint = "mix.exs"
+hidden = [".mix", "_build", "deps"]
+
+[nix]
+channel = "stable-23_11"
+
+[nix.pkgs]
+pkgs = ["elixir", "nodejs", "erlang"]
+
+[env]
+MIX_ENV = "dev"
+PHX_HOST = "0.0.0.0"
+
+[deployment]
+run = ["sh", "-c", "mix deps.get && mix assets.deploy && MIX_ENV=prod mix phx.server"]
+deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 4000
+externalPort = 80
