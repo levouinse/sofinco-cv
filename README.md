@@ -2,6 +2,10 @@
 
 Modern, stateless online CV website built with Elixir Phoenix Framework.
 
+## About
+
+A lightweight, performant CV/resume website that showcases professional experience, skills, and projects. Built with Phoenix framework without database dependencies, making it easy to deploy anywhere.
+
 ## Features
 
 - ✅ No database (stateless)
@@ -14,6 +18,7 @@ Modern, stateless online CV website built with Elixir Phoenix Framework.
 - ✅ SEO optimized with meta tags
 - ✅ Sitemap generation
 - ✅ Reusable Phoenix components
+- ✅ Fast asset compilation with esbuild & Tailwind CSS
 
 ## Prerequisites
 
@@ -197,6 +202,23 @@ Reusable Phoenix function components:
 - `<.section>` - Content section
 - `<.container>` - Page container
 
+## Tech Stack
+
+- **Framework**: Phoenix 1.7
+- **Language**: Elixir 1.14+
+- **Runtime**: Erlang/OTP 25+
+- **Frontend**: Tailwind CSS, esbuild
+- **Server**: Bandit HTTP server
+- **Data Format**: JSON (Jason)
+
+## Author
+
+**ANDI FARREL AL-FAIZY**
+- Portfolio: [portfolio-andi.vercel.app](https://portfolio-andi.vercel.app/)
+- Email: kofikampoes@gmail.com
+
 ## License
 
-MIT
+MIT License - see [LICENSE](LICENSE) file for details.
+
+Copyright (c) 2026 SOFINCO
