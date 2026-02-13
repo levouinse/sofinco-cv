@@ -2,6 +2,8 @@
 
 Modern, stateless online CV website built with Elixir Phoenix Framework.
 
+![Demo](demo.png)
+
 ## About
 
 A lightweight, performant CV/resume website that showcases professional experience, skills, and projects. Built with Phoenix framework without database dependencies, making it easy to deploy anywhere.
