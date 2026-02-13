@@ -1,0 +1,187 @@
+<.container class="py-12 sm:py-16">
+  <!-- Hero Section -->
+  <div class="text-center mb-16 hero-section fade-in">
+    <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white mb-4">
+      <%= @profile.name %>
+    </h1>
+    <p class="text-xl md:text-2xl text-zinc-700 dark:text-zinc-300 mb-6 typing-effect">
+      <%= @profile.title %>
+    </p>
+    <p class="text-base md:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-8 px-4">
+      <%= @profile.bio %>
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center px-4">
+      <.button href="/resume.pdf" variant="primary">Download Resume</.button>
+      <.button href={@profile.portfolio_url} variant="secondary">View Portfolio</.button>
+    </div>
+  </div>
+
+  <!-- Stats Section -->
+  <div class="mb-16 fade-in">
+    <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white mb-8 text-center">Activity Overview</h2>
+    <.card>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+        <%= for stat <- @stats do %>
+          <div class="text-center">
+            <div class="text-2xl sm:text-3xl font-bold text-rose-600 dark:text-rose-400 mb-2 counter" data-target={stat.value}>
+              0<%= stat.suffix %>
+            </div>
+            <div class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-medium mb-3">
+              <%= stat.label %>
+            </div>
+            <div class="h-16 sm:h-20 relative overflow-visible">
+              <svg class="w-full h-full stat-chart" data-index={stat.value} data-milestones={Jason.encode!(stat.milestones)}>
+                <polyline class="stroke-rose-500 dark:stroke-rose-400 fill-none stroke-[2.5]" points=""></polyline>
+                <polyline class="fill-rose-500/10 dark:fill-rose-400/10 stroke-none" points=""></polyline>
+              </svg>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </.card>
+  </div>
+
+  <!-- Experience Section -->
+  <.section title="Experience">
+    <div class="space-y-6">
+      <%= for exp <- @experience do %>
+        <.card class="fade-in">
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <h3 class="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-white">
+                <%= exp.title %>
+              </h3>
+              <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 mt-1"><%= exp.period %></p>
+            </div>
+          </div>
+          <ul class="space-y-2 mt-4">
+            <%= for resp <- exp.responsibilities do %>
+              <li class="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 flex items-start">
+                <span class="mr-2 text-rose-500">✓</span>
+                <span><%= resp %></span>
+              </li>
+            <% end %>
+          </ul>
+        </.card>
+      <% end %>
+    </div>
+  </.section>
+
+  <!-- Skills Section -->
+  <.section title="Skills">
+    <div class="flex flex-wrap gap-3 fade-in">
+      <%= for skill <- @skills do %>
+        <.badge class="hover:scale-110 transition-transform cursor-pointer"><%= skill %></.badge>
+      <% end %>
+    </div>
+  </.section>
+
+  <!-- Projects Section -->
+  <.section title="Projects">
+    <div class="space-y-6">
+      <%= for project <- @projects do %>
+        <.card class="fade-in">
+          <div class="flex items-start justify-between mb-2">
+            <h3 class="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-white">
+              <%= project.name %>
+            </h3>
+            <%= if Map.get(project, :private) do %>
+              <span class="text-xs px-3 py-1 rounded-full bg-gradient-to-r from-zinc-100 to-zinc-50 dark:from-zinc-800 dark:to-zinc-900 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 font-semibold">
+                Private
+              </span>
+            <% end %>
+          </div>
+          <p class="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 mb-4"><%= project.description %></p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <%= for tech <- project.tech do %>
+              <.badge><%= tech %></.badge>
+            <% end %>
+          </div>
+          <%= if project.url != "#" do %>
+            <a href={project.url} class="inline-flex items-center gap-2 text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 font-medium group">
+              View Project 
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          <% else %>
+            <span class="text-sm text-zinc-500 dark:text-zinc-500 italic">
+              <%= if Map.get(project, :private), do: "Private project - Available upon request", else: "Coming soon" %>
+            </span>
+          <% end %>
+        </.card>
+      <% end %>
+    </div>
+  </.section>
+
+  <!-- SaaS Projects Section -->
+  <.section title="SaaS Projects">
+    <div class="space-y-6">
+      <%= for project <- @saas_projects do %>
+        <.card class="fade-in">
+          <div class="flex items-start justify-between mb-2">
+            <h3 class="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-white">
+              <%= project.name %>
+            </h3>
+            <%= if Map.get(project, :status) do %>
+              <span class="text-xs px-3 py-1 rounded-full bg-gradient-to-r from-rose-100 to-rose-50 dark:from-rose-500/20 dark:to-rose-500/10 border border-rose-300 dark:border-rose-500/50 text-rose-700 dark:text-rose-300 font-semibold animate-pulse shadow-sm">
+                <%= project.status %>
+              </span>
+            <% end %>
+          </div>
+          <p class="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 mb-4"><%= project.description %></p>
+          
+          <%= if Map.get(project, :features) do %>
+            <div class="mb-4">
+              <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 mb-2">Key Features:</p>
+              <ul class="space-y-1">
+                <%= for feature <- project.features do %>
+                  <li class="text-sm text-zinc-700 dark:text-zinc-300 flex items-start">
+                    <span class="mr-2 text-rose-500">✓</span>
+                    <span><%= feature %></span>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          
+          <div class="flex flex-wrap gap-2 mb-4">
+            <%= for tech <- project.tech do %>
+              <.badge><%= tech %></.badge>
+            <% end %>
+          </div>
+          <%= if project.url != "#" do %>
+            <a href={project.url} class="inline-flex items-center gap-2 text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 font-medium group">
+              View Project
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          <% end %>
+        </.card>
+      <% end %>
+    </div>
+  </.section>
+
+  <!-- Contact Section -->
+  <.section title="Contact">
+    <.card class="fade-in hover-lift">
+      <div class="space-y-4">
+        <div class="group">
+          <span class="font-medium text-zinc-900 dark:text-white">Email:</span>
+          <a href={"mailto:#{@contact.email}"} class="text-zinc-700 dark:text-zinc-300 hover:text-rose-600 dark:hover:text-rose-400 ml-2 transition-colors">
+            <%= @contact.email %>
+          </a>
+        </div>
+        <div class="group">
+          <span class="font-medium text-zinc-900 dark:text-white">GitHub:</span>
+          <a href={@contact.github} class="text-zinc-700 dark:text-zinc-300 hover:text-rose-600 dark:hover:text-rose-400 ml-2 transition-colors">
+            <%= @contact.github %>
+          </a>
+        </div>
+        <div class="group">
+          <span class="font-medium text-zinc-900 dark:text-white">LinkedIn:</span>
+          <a href={@contact.linkedin} class="text-zinc-700 dark:text-zinc-300 hover:text-rose-600 dark:hover:text-rose-400 ml-2 transition-colors">
+            <%= @contact.linkedin %>
+          </a>
+        </div>
+      </div>
+    </.card>
+  </.section>
+</.container>

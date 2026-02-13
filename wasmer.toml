@@ -1,0 +1,21 @@
+[package]
+name = "cv-app"
+version = "0.1.0"
+description = "Online CV Website - ANDI FARREL AL-FAIZY"
+license = "MIT"
+repository = "https://github.com/yourusername/cv-app"
+
+[[module]]
+name = "cv-app"
+source = "_build/prod/rel/cv_app/bin/cv_app"
+abi = "wasi"
+
+[module.interfaces]
+wasi = "0.1.0"
+
+[[command]]
+name = "start"
+module = "cv-app"
+runner = "wasi"
+
+[dependencies]
