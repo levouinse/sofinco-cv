@@ -28,8 +28,9 @@ defmodule CvApp.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
-      {:esbuild, "~> 0.4", runtime: Mix.env() == :dev}
+      {:plug, "~> 1.13.0"},
+      {:tailwind, "~> 0.1.10", runtime: Mix.env() == :dev},
+      {:esbuild, "~> 0.5.0", runtime: Mix.env() == :dev}
     ]
   end
 

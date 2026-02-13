@@ -28,20 +28,35 @@ mix deps.get
 
 # Install Node dependencies
 if [ -d "assets" ]; then
-    echo ""
-    echo "📦 Installing Node.js dependencies..."
-    cd assets && npm install && cd ..
+    if command -v npm &> /dev/null; then
+        echo ""
+        echo "📦 Installing Node.js dependencies..."
+        cd assets && npm install && cd ..
+    else
+        echo ""
+        echo "⚠️  npm not found, skipping Node.js dependencies..."
+    fi
 fi
 
 # Compile assets
-echo ""
-echo "🎨 Compiling assets..."
-mix assets.deploy
+if mix help assets.deploy &> /dev/null; then
+    echo ""
+    echo "🎨 Compiling assets..."
+    mix assets.deploy
+else
+    echo ""
+    echo "⚠️  assets.deploy task not found, skipping..."
+fi
 
 # Generate secret key base for development
-echo ""
-echo "🔑 Generating secret key..."
-export SECRET_KEY_BASE=$(mix phx.gen.secret)
+if mix help phx.gen.secret &> /dev/null; then
+    echo ""
+    echo "🔑 Generating secret key..."
+    export SECRET_KEY_BASE=$(mix phx.gen.secret)
+else
+    echo ""
+    echo "⚠️  phx.gen.secret task not found, skipping..."
+fi
 
 echo ""
 echo "✅ Setup complete!"
