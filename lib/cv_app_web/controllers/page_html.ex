@@ -1,6 +1,4 @@
-defmodule CvAppWeb.PageHTML do
-  use CvAppWeb, :html
+defmodule CvAppWeb.PageView do
+  use CvAppWeb, :view
   import CvAppWeb.Components
-
-  embed_templates "page_html/*"
 end

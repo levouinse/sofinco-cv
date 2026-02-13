@@ -1,5 +1,3 @@
-defmodule CvAppWeb.Layouts do
-  use CvAppWeb, :html
-
-  embed_templates "layouts/*"
+defmodule CvAppWeb.LayoutView do
+  use CvAppWeb, :view
 end

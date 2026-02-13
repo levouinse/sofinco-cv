@@ -5,7 +5,7 @@ defmodule CvAppWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
-    plug :put_root_layout, html: {CvAppWeb.Layouts, :root}
+    plug :put_root_layout, {CvAppWeb.LayoutView, :root}
     plug :put_secure_browser_headers
   end
 

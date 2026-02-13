@@ -2,9 +2,9 @@ import Config
 
 config :cv_app, CvAppWeb.Endpoint,
   url: [host: "localhost"],
-  adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: CvAppWeb.ErrorHTML],
+    view: CvAppWeb.ErrorView,
+    accepts: ~w(html json),
     layout: false
   ],
   pubsub_server: CvApp.PubSub,

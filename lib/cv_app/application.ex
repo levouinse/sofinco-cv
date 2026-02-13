@@ -5,7 +5,6 @@ defmodule CvApp.Application do
   def start(_type, _args) do
     children = [
       CvAppWeb.Telemetry,
-      {DNSCluster, query: Application.get_env(:cv_app, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: CvApp.PubSub},
       CvAppWeb.Endpoint
     ]

@@ -3,7 +3,7 @@ defmodule CvAppWeb do
 
   def router do
     quote do
-      use Phoenix.Router, helpers: false
+      use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
     end
@@ -11,20 +11,29 @@ defmodule CvAppWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller,
-        formats: [:html, :json],
-        layouts: [html: CvAppWeb.Layouts]
+      use Phoenix.Controller, namespace: CvAppWeb
 
       import Plug.Conn
+      import CvAppWeb.Router.Helpers
+    end
+  end
 
-      unquote(verified_routes())
+  def view do
+    quote do
+      use Phoenix.View,
+        root: "lib/cv_app_web/templates",
+        namespace: CvAppWeb
+
+      import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
+
+      unquote(view_helpers())
     end
   end
 
   def html do
     quote do
       use Phoenix.Component
-      import Phoenix.Controller, only: [get_csrf_token: 0, view_module: 1, view_template: 1]
+      import Phoenix.Controller, only: [get_csrf_token: 0, view_module: 1]
 
       unquote(html_helpers())
     end
@@ -34,19 +43,19 @@ defmodule CvAppWeb do
     quote do
       import Phoenix.HTML
       import CvAppWeb.CoreComponents
+      import CvAppWeb.Router.Helpers
 
       alias Phoenix.LiveView.JS
-
-      unquote(verified_routes())
     end
   end
 
-  def verified_routes do
+  defp view_helpers do
     quote do
-      use Phoenix.VerifiedRoutes,
-        endpoint: CvAppWeb.Endpoint,
-        router: CvAppWeb.Router,
-        statics: CvAppWeb.static_paths()
+      import Phoenix.View
+      import CvAppWeb.ErrorHelpers
+      import CvAppWeb.Router.Helpers
+
+      alias CvAppWeb.Router.Helpers, as: Routes
     end
   end
 

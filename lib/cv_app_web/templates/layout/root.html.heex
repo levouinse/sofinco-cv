@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="csrf-token" content={get_csrf_token()} />
+    <meta name="csrf-token" content={Phoenix.HTML.Tag.csrf_token_value()} />
     
     <!-- SEO Meta Tags -->
     <title>ANDI FARREL AL-FAIZY - Full-Stack Software Engineer</title>
@@ -21,8 +21,8 @@
     <meta name="twitter:title" content="ANDI FARREL AL-FAIZY - Full-Stack Software Engineer" />
     <meta name="twitter:description" content="Experienced full-stack engineer specializing in modern web technologies and scalable backend systems." />
     
-    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
-    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+    <link phx-track-static rel="stylesheet" href="/assets/app.css" />
+    <script defer phx-track-static type="text/javascript" src="/assets/app.js">>
     </script>
   </head>
   <body class="min-h-full antialiased">

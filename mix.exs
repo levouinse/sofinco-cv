@@ -5,7 +5,7 @@ defmodule CvApp.MixProject do
     [
       app: :cv_app,
       version: "0.1.0",
-      elixir: "~> 1.14",
+      elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
@@ -21,16 +21,15 @@ defmodule CvApp.MixProject do
 
   defp deps do
     [
-      {:phoenix, "~> 1.7.0"},
-      {:phoenix_html, "~> 4.0"},
-      {:phoenix_live_view, "~> 1.0.0"},
-      {:telemetry_metrics, "~> 1.0"},
+      {:phoenix, "~> 1.6.0"},
+      {:phoenix_html, "~> 3.0"},
+      {:phoenix_live_view, "~> 0.17.0"},
+      {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
-      {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.0"},
-      {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
-      {:esbuild, "~> 0.8", runtime: Mix.env() == :dev}
+      {:plug_cowboy, "~> 2.5"},
+      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
+      {:esbuild, "~> 0.4", runtime: Mix.env() == :dev}
     ]
   end
 
